@@ -1,7 +1,7 @@
 # java-api
 This repo hosts various REST based API's built using java 
 
-Helidon App: employee-app
+1. Helidon App: employee-app
 
 TODO:
     - Not able to build the image (need to debug)
@@ -12,6 +12,7 @@ TODO:
     - Connect to other DB's (h2-for in memory, mongo, mysql, oracle)
     - Evaluate logs from docker 
     - Check metrics via zipkin - promethues 
+    - Need to setup github actions
     - Deploy to cloud instance
 
 Deploy a microservices-based RESTful Java application to Oracle Cloud
@@ -20,3 +21,5 @@ Deploy a microservices-based RESTful Java application to Oracle Cloud
 Code reference:
     https://github.com/oracle/helidon/blob/1.1.2/examples/employee-app/src/main/java/io/helidon/service/employee/EmployeeService.java
 
+
+2. Spring boot App: <to be created>
