@@ -5,6 +5,7 @@ This repo hosts various REST based API's built using java
 
 TODO:
     - Not able to build the image (need to debug)
+    - Update client artifacts (index and js file)
     - Add tests
     - Add javaDocs  
     - Expose openApi
