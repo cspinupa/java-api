@@ -37,9 +37,9 @@ FROM openjdk:8-jre-slim
 WORKDIR /helidon
 
 # Copy the binary built in the 1st stage
-COPY --from=build /helidon/target/helidon-quickstart-se.jar ./
+COPY --from=build /helidon/target/employee-api ./
 COPY --from=build /helidon/target/libs ./libs
 
-CMD ["java", "-jar", "helidon-quickstart-se.jar"]
+CMD ["java", "-jar", "employee-api"]
 
 EXPOSE 8060
