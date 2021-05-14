@@ -54,4 +54,43 @@ public final class EmployeeRepositoryImpl implements EmployeeRepository {
     public List<Employee> getAll() {
         return eList;
     }
+
+	@Override
+	public Employee save(Employee employee) {
+        Employee nextEmployee = Employee.of(null, employee.getFirstName(), employee.getLastName(),
+                employee.getEmail(), employee.getPhone(), employee.getBirthDate(), 
+                employee.getTitle(), employee.getDepartment());
+        eList.add(nextEmployee);
+        return nextEmployee;
+	}
+
+	@Override
+	public Employee update(Employee updatedEmployee, String id) {
+        deleteById(id);
+        Employee e = Employee.of(id, updatedEmployee.getFirstName(), updatedEmployee.getLastName(),
+                updatedEmployee.getEmail(), updatedEmployee.getPhone(), updatedEmployee.getBirthDate(),
+                updatedEmployee.getTitle(), updatedEmployee.getDepartment());
+        eList.add(e);
+        return e;
+	}
+
+	@Override
+	public void deleteById(String id) {
+        int matchIndex;
+        matchIndex = eList.stream().filter(e -> e.getId().equals(id)).findFirst().map(e -> eList.indexOf(e)).get();
+        eList.remove(matchIndex);		
+	}
+
+	@Override
+	public Employee getById(String id) {
+        Employee match;
+        match = eList.stream().filter(e -> e.getId().equals(id)).findFirst().get();
+        return match;
+	}
+
+	@Override
+	public boolean isIdFound(String id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

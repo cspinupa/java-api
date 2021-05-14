@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="io.helidon.service.employee.MainTest" time="1.152" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="io.helidon.service.employee.MainTest" time="1.088" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.11+9"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home/lib"/>
     <property name="gopherProxySet" value="false"/>
-    <property name="maven.multiModuleProjectDirectory" value="/Users/cpinupa/Documents/GitHub/java-api/helidon-quickstart-se"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/cpinupa/Documents/GitHub/java-api/employee-app"/>
     <property name="java.vm.vendor" value="AdoptOpenJDK"/>
     <property name="java.vendor.url" value="https://adoptopenjdk.net/"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="IN"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/cpinupa/Documents/GitHub/java-api/helidon-quickstart-se"/>
+    <property name="user.dir" value="/Users/cpinupa/Documents/GitHub/java-api/employee-app"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="java.runtime.version" value="11.0.11+9"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
@@ -63,5 +63,5 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testHelloWorld" classname="io.helidon.service.employee.MainTest" time="0.33"/>
+  <testcase name="testHelloWorld" classname="io.helidon.service.employee.MainTest" time="0.281"/>
 </testsuite>
