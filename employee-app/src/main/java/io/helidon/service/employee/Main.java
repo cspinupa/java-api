@@ -27,6 +27,9 @@ import io.helidon.metrics.MetricsSupport;
 import io.helidon.webserver.Routing;
 import io.helidon.webserver.ServerConfiguration;
 import io.helidon.webserver.WebServer;
+import io.helidon.webserver.StaticContentSupport;
+import io.helidon.media.jsonb.server.JsonBindingSupport;
+import java.io.InputStream;
 
 /**
  * Simple Hello World rest application.
@@ -55,8 +58,11 @@ public final class Main {
     static WebServer startServer() throws IOException {
 
         // load logging configuration
-        LogManager.getLogManager().readConfiguration(
-                Main.class.getResourceAsStream("/logging.properties"));
+        // LogManager.getLogManager().readConfiguration(
+        //         Main.class.getResourceAsStream("/logging.properties"));
+        try (InputStream logFile = Main.class.getResourceAsStream("/logging.properties")) {
+            LogManager.getLogManager().readConfiguration(logFile);
+        }
 
         // By default this will pick up application.yaml from the classpath
         Config config = Config.create();
@@ -71,8 +77,9 @@ public final class Main {
         // print a message at shutdown. If unsuccessful, print the exception.
         server.start()
             .thenAccept(ws -> {
-                System.out.println(
-                        "WEB server is up! http://localhost:" + ws.port() + "/greet");
+                System.out.println("WEB server is up!");
+            System.out.println("Web client at: http://localhost:" + ws.port()
+        + "/public/index.html");
                 ws.whenShutdown().thenRun(()
                     -> System.out.println("WEB server is DOWN. Good bye!"));
                 })
@@ -94,19 +101,23 @@ public final class Main {
      * @param config configuration of this server
      */
     private static Routing createRouting(Config config) {
-
+    
         MetricsSupport metrics = MetricsSupport.create();
-        GreetService greetService = new GreetService(config);
-        HealthSupport health = HealthSupport.builder()
-                .add(HealthChecks.healthChecks())   // Adds a convenient set of checks
-                .build();
-
+        EmployeeService employeeService = new EmployeeService(config);
+        HealthSupport health = HealthSupport.builder().add(HealthChecks.healthChecks())
+        .build(); // Adds a convenient set of checks
+        
         return Routing.builder()
-                .register(JsonSupport.create())
-                .register(health)                   // Health at "/health"
-                .register(metrics)                  // Metrics at "/metrics"
-                .register("/greet", greetService)
-                .build();
-    }
+            .register(JsonBindingSupport.create())
+            .register(health) // Health at "/health"
+            .register(metrics) // Metrics at "/metrics"
+            .register("/employees", employeeService)
+            .register("/public", StaticContentSupport.builder("public").welcomeFileName("index.html")).build();
+  
+    }                                
+                            
+//        GreetService greetService = new GreetService(config);
+// removed this which came in via starte template .register("/greet", greetService)
+
 
 }

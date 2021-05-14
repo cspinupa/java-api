@@ -66,7 +66,7 @@ public class MainTest {
     @Test
     public void testHelloWorld() throws Exception {
         HttpURLConnection conn;
-
+        /* Commenting tests as greet service is disabled
         conn = getURLConnection("GET","/greet");
         Assertions.assertEquals(200, conn.getResponseCode(), "HTTP response1");
         JsonReader jsonReader = JSON.createReader(conn.getInputStream());
@@ -95,6 +95,7 @@ public class MainTest {
         jsonObject = jsonReader.readObject();
         Assertions.assertEquals("Hola Jose!", jsonObject.getString("message"),
                 "hola Jose message");
+        */
 
         conn = getURLConnection("GET", "/health");
         Assertions.assertEquals(200, conn.getResponseCode(), "HTTP response2");

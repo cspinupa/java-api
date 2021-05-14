@@ -42,4 +42,4 @@ COPY --from=build /helidon/target/libs ./libs
 
 CMD ["java", "-jar", "helidon-quickstart-se.jar"]
 
-EXPOSE 8080
+EXPOSE 8060

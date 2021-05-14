@@ -41,4 +41,4 @@ COPY --from=build /helidon/target/helidon-quickstart-se .
 
 ENTRYPOINT ["./helidon-quickstart-se"]
 
-EXPOSE 8080
+EXPOSE 8060
