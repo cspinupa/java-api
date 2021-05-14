@@ -1,0 +1,57 @@
+package io.helidon.service.employee;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
+
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
+import javax.json.bind.JsonbConfig;
+
+
+public final class EmployeeRepositoryImpl implements EmployeeRepository {
+
+    private final CopyOnWriteArrayList<Employee> eList = new CopyOnWriteArrayList<Employee>();
+
+    public EmployeeRepositoryImpl() {
+        JsonbConfig config = new JsonbConfig().withFormatting(Boolean.TRUE);
+
+        Jsonb jsonb = JsonbBuilder.create(config);
+
+        eList.addAll(jsonb.fromJson(EmployeeRepositoryImpl.class.getResourceAsStream("/employees.json"),
+                new CopyOnWriteArrayList<Employee>() {
+                }.getClass().getGenericSuperclass()));
+    }
+
+    @Override
+    public List<Employee> getByLastName(String name) {
+        List<Employee> matchList = eList.stream().filter((e) -> (e.getLastName().contains(name)))
+                .collect(Collectors.toList());
+
+        return matchList;
+    }
+
+    @Override
+    public List<Employee> getByTitle(String title) {
+        List<Employee> matchList = eList.stream().filter((e) -> (e.getTitle().contains(title)))
+                .collect(Collectors.toList());
+
+        return matchList;
+    }
+
+    @Override
+    public List<Employee> getByDepartment(String department) {
+        List<Employee> matchList = eList.stream().filter((e) -> (e.getDepartment().contains(department)))
+                .collect(Collectors.toList());
+
+        return matchList;
+    }
+
+    @Override
+    public List<Employee> getAll() {
+        return eList;
+    }
+}
