@@ -9,10 +9,9 @@ public interface EmployeeRepository {
         switch (driverType) {
             case "Array":
                 return new EmployeeRepositoryImpl();
-		/*case "Oracle":
-                return new EmployeeRepositoryImplDB(config);
-                break;*/
-            default:
+	        case "Oracle":
+                   return new EmployeeRepositoryDBImpl(config);
+           default:
                 //Array is the default
                 return new EmployeeRepositoryImpl();
         }

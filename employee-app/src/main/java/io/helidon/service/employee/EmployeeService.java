@@ -37,13 +37,13 @@ public class EmployeeService implements Service {
     }
 
     private void getAll(final ServerRequest request, final ServerResponse response) {
-        LOGGER.fine("getAll");
+        LOGGER.info("getAll");
         List<Employee> allEmployees = this.employees.getAll();
         response.send(allEmployees);
     }
 
     private void getByLastName(final ServerRequest request, final ServerResponse response) {
-        LOGGER.fine("getByLastName");
+        LOGGER.info("getByLastName");
         // Invalid query strings handled in isValidQueryStr. Keeping DRY
         if (isValidQueryStr(response, request.path().param("name"))) {
             response.status(200).send(this.employees.getByLastName(request.path().param("name")));
@@ -56,7 +56,7 @@ public class EmployeeService implements Service {
      * @param response the server response
      */
     private void getByTitle(final ServerRequest request, final ServerResponse response) {
-        LOGGER.fine("getByTitle");
+        LOGGER.info("getByTitle");
         if (isValidQueryStr(response, request.path().param("name"))) {
             response.status(200).send(this.employees.getByTitle(request.path().param("name")));
         }
@@ -68,7 +68,7 @@ public class EmployeeService implements Service {
      * @param response the server response
      */
     private void getByDepartment(final ServerRequest request, final ServerResponse response) {
-        LOGGER.fine("getByDepartment");
+        LOGGER.info("getByDepartment");
         if (isValidQueryStr(response, request.path().param("name"))) {
             response.status(200).send(this.employees.getByDepartment(request.path().param("name")));
         }
@@ -85,7 +85,7 @@ public class EmployeeService implements Service {
         }
     }
     private void getEmployeeById(ServerRequest request, ServerResponse response) {
-        LOGGER.fine("getEmployeeById");
+        LOGGER.info("getEmployeeById");
         // If invalid, response handled in isValidId. Keeping DRY
         if (isValidId(response, request.path().param("id"))) {
             Employee employee = this.employees.getById(request.path().param("id"));
@@ -109,7 +109,7 @@ public class EmployeeService implements Service {
     }
 
     private void save(ServerRequest request, ServerResponse response) {
-        LOGGER.fine("save");
+        LOGGER.info("save");
         request.content().as(Employee.class)
                 .thenApply(e -> Employee.of(null, e.getFirstName(), e.getLastName(), 
                     e.getEmail(), e.getPhone(), e.getBirthDate(), e.getTitle(), e.getDepartment()))
@@ -117,7 +117,7 @@ public class EmployeeService implements Service {
     }
 
     private void update(ServerRequest request, ServerResponse response) {
-        LOGGER.fine("update");
+        LOGGER.info("update");
         if (isValidId(response, request.path().param("id"))) {
             request.content().as(Employee.class).thenApply(e -> {
                 return this.employees.update(Employee.of(e.getId(), 
@@ -129,7 +129,7 @@ public class EmployeeService implements Service {
     }
 
     private void delete(final ServerRequest request, final ServerResponse response) {
-        LOGGER.fine("delete");
+        LOGGER.info("delete");
         if (isValidId(response, request.path().param("id"))) {
             this.employees.deleteById(request.path().param("id"));
             response.status(204).send();

@@ -16,11 +16,16 @@
 
 app:
 # greeting: "Hello"
-  user: <user-db>
-  password: <password-user-db>
-  hosturl: <hostname>:<port>/<database_unique_name>.<host_domain_name>
-  drivertype: Array
-
+# --sample connection ---
+#  user: <user-db>
+#  password: <password-user-db>
+#  hosturl: <hostname>:<port>/<database_unique_name>.<host_domain_name>
+#  drivertype: Array
+# -- oracle db connection -- 
+  user: sys as SYSDBA
+  password: dataB_Pwd21#
+  hosturl: 129.213.166.213:1521/employee_iad1dn.sub9212c5134.msdev.oraclevcn.com
+  drivertype: Oracle
 
 server:
   port: 8060

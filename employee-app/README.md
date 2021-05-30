@@ -136,3 +136,31 @@ Start the application:
 ```
 docker run --rm -p 8060:8060 helidon-quickstart-se-native:latest
 ```
+
+
+-------- This is what is shown when minikube started ------------
+
+cpinupa@cpinupa-mac java-api % minikube delete
+🔥  Deleting "minikube" in virtualbox ...
+💔  The "minikube" cluster has been deleted.
+cpinupa@cpinupa-mac java-api % minikube start
+😄  minikube v1.4.0 on Darwin 10.15.7
+🔥  Creating virtualbox VM (CPUs=2, Memory=2000MB, Disk=20000MB) ...
+🐳  Preparing Kubernetes v1.16.0 on Docker 18.09.9 ...
+🚜  Pulling images ...
+🚀  Launching Kubernetes ... 
+⌛  Waiting for: apiserver proxy etcd scheduler controller dns
+🏄  Done! kubectl is now configured to use "minikube"
+
+-------------- end --------------
+
+Useful references:
+    - https://blogs.oracle.com/dev2dev/get-oracle-jdbc-drivers-and-ucp-from-oracle-maven-repository-without-ides
+
+
+TODO:
+    -  docker build -t employee-app . [Build the Docker image.] (from https://docs.oracle.com/en/solutions/build-rest-java-application-with-oke/deploy-application-oracle-cloud.html#GUID-ED3E352E-F399-40A3-9530-6E436D99D28C)
+        - Able to resolve the error but getting into error connecting to DB
+            - try changing the ojdbc8 groupId to old value
+        - Adding "-Doracle.jdbc.fanEnabled=false" as java options in java command run resolved running the app from docker image
+            - using command : "docker run --rm -p 8060:8060 employee-app"
